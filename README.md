@@ -14,6 +14,11 @@ Example:
 ```
 from pyNacha.builder import AchFile
 
+class CustomPluggable(Pluggable):
+    @staticmethod
+    def file_id_mod():
+        return 'A'
+
 settings = {
     'immediate_dest': '123456789', # Your bank's routing number
     'immediate_org': '1098765432', # Bank assigned routing number
@@ -24,7 +29,7 @@ settings = {
     'trace_num': '00000000'
 }
 
-ach_file = AchFile('A', settings) #file Id mod
+ach_file = AchFile(settings, CustomPluggable)
 
 entries = [
     {
